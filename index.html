@@ -377,6 +377,150 @@
     lastScroll = currentScroll;
   });
 </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bored? Play Cat Game!</title>
+<style>
+  body { margin:0; padding:0; font-family:'Poppins', sans-serif; background:#f4f4f4; overflow:hidden; }
+  #gamePopup {
+    position: fixed; bottom:20px; right:20px; width:300px; 
+    background:#fff; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.2);
+    padding:15px; display:flex; flex-direction:column; align-items:center; z-index:9999;
+  }
+  #gamePopup p { margin-bottom:10px; text-align:center; font-weight:500; }
+  #startGame, #pauseGame { padding:10px 20px; background:#0077b6; color:#fff; border:none; border-radius:5px; cursor:pointer; font-weight:600; margin-top:5px;}
+  #gameCanvas { background:#f7f7f7; border:2px solid #333; margin-top:10px; }
+</style>
+</head>
+<body>
 
+<div id="gamePopup">
+  <p>Feeling bored? Play Cat Game!</p>
+  <button id="startGame">Start Game</button>
+  <button id="pauseGame" style="display:none;">Pause</button>
+  <canvas id="gameCanvas" width="280" height="150" style="display:none;"></canvas>
+</div>
+
+<script>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const startBtn = document.getElementById('startGame');
+const pauseBtn = document.getElementById('pauseGame');
+let gameInterval;
+
+let cat = { x:30, y:120, width:20, height:20, dy:0, gravity:0.6, jumpPower:-12 };
+let obstacles = [];
+let speed = 3;
+let score = 0;
+let gameOver = false;
+let paused = false;
+
+function resetGame() {
+  cat.y = 120; cat.dy = 0;
+  obstacles = []; speed=3; score=0; gameOver=false; paused=false;
+  canvas.style.display = 'block';
+  pauseBtn.style.display = 'inline-block';
+  pauseBtn.innerText = 'Pause';
+}
+
+function spawnObstacle() {
+  let height = 20 + Math.random()*30;
+  obstacles.push({x:canvas.width, y:150-height, width:15, height:height});
+}
+
+function drawCat() {
+  ctx.fillStyle='orange';
+  ctx.fillRect(cat.x, cat.y+10, 20, 10);
+  ctx.beginPath();
+  ctx.arc(cat.x+10, cat.y+5, 5, 0, Math.PI*2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(cat.x+5, cat.y+5);
+  ctx.lineTo(cat.x+8, cat.y-2);
+  ctx.lineTo(cat.x+10, cat.y+5);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(cat.x+15, cat.y+5);
+  ctx.lineTo(cat.x+12, cat.y-2);
+  ctx.lineTo(cat.x+10, cat.y+5);
+  ctx.fill();
+}
+
+function drawObstacles() {
+  obstacles.forEach(obs => {
+    ctx.fillStyle='saddlebrown';
+    ctx.fillRect(obs.x, obs.y+20, 10, obs.height-20);
+    ctx.fillStyle='green';
+    ctx.beginPath();
+    ctx.arc(obs.x+5, obs.y+10, 15, 0, Math.PI*2);
+    ctx.fill();
+  });
+}
+
+function draw() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  drawCat();
+  drawObstacles();
+  ctx.fillStyle='#555';
+  ctx.fillRect(0,150,canvas.width,5);
+  ctx.fillStyle='#000';
+  ctx.font='14px Poppins';
+  ctx.fillText('Score: '+score, 10, 15);
+}
+
+function update() {
+  if(gameOver || paused) return;
+
+  cat.dy += cat.gravity;
+  cat.y += cat.dy;
+
+  if(cat.y + cat.height > 150) { cat.y=150-cat.height; cat.dy=0; }
+
+  obstacles.forEach(obs => { 
+    obs.x -= speed; 
+    if(cat.x < obs.x + obs.width &&
+       cat.x + cat.width > obs.x &&
+       cat.y < obs.y + obs.height &&
+       cat.y + cat.height > obs.y) {
+        gameOver = true; 
+        alert('Game Over! Your score: '+score);
+        resetGame();
+    }
+  });
+
+  obstacles = obstacles.filter(obs => obs.x+obs.width>0);
+
+  score += 1;
+  if(score % 100 === 0) speed += 0.5;
+}
+
+function gameLoop() {
+  update();
+  draw();
+}
+
+startBtn.addEventListener('click', () => {
+  resetGame();
+  if(gameInterval) clearInterval(gameInterval);
+  gameInterval = setInterval(gameLoop,20);
+});
+
+pauseBtn.addEventListener('click', () => {
+  paused = !paused;
+  pauseBtn.innerText = paused ? 'Resume' : 'Pause';
+});
+
+// Jump on space or click
+document.addEventListener('keydown', e => { if(e.code==='Space' && !paused){ if(cat.y===150-cat.height)cat.dy=cat.jumpPower;} });
+canvas.addEventListener('click', ()=>{ if(!paused && cat.y===150-cat.height)cat.dy=cat.jumpPower; });
+
+setInterval(() => { if(!gameOver && !paused && canvas.style.display==='block') spawnObstacle(); },1500);
+</script>
+
+</body>
+</html>
 </body>
 </html>
