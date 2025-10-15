@@ -1,372 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bilal Nasir</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-<style>
-/* Reset */
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilal Nasir - Amazon Specialist</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <!-- AOS for Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body {
+            background: #FAF5FF;
+            color: #2D3748;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+        }
 
-body {
-  background:#f9f9f9;
-  color:#333;
-  scroll-behavior:smooth;
-  overflow-x:hidden;
-  line-height:1.6;
-}
+        /* Falling Emojis */
+        .emoji {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.7;
+            animation: fall linear infinite;
+            pointer-events: none;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0.7; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0.2; }
+        }
 
-/* Balloons */
-.balloon {
-  position: absolute;
-  width: 40px;
-  height: 60px;
-  border-radius: 50% 50% 50% 50%;
-  opacity:0.85;
-  cursor:pointer;
-  animation: fall linear infinite;
-}
+        /* Navbar */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, rgba(107, 70, 193, 0.9), rgba(0, 229, 255, 0.9));
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        nav ul li a:hover {
+            color: #FF6B6B;
+            text-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
+        }
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+        }
 
-@keyframes fall {
-  0% { transform: translateY(-100px); }
-  100% { transform: translateY(110vh); }
-}
+        /* Hero */
+        header {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: linear-gradient(45deg, #6B46C1 50%, #FAF5FF 50%);
+            color: #2D3748;
+            position: relative;
+        }
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            text-align: left;
+        }
+        .hero-content img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #FF6B6B;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        .hero-text h1 {
+            font-size: 3.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .hero-text h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: #FF6B6B;
+        }
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #E2E8F0;
+            max-width: 600px;
+        }
+        .hero-text a {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: #FF6B6B;
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+        }
+        .hero-text a:hover {
+            background: #F43F5E;
+            transform: scale(1.05);
+        }
 
-/* Navbar */
-nav {
-  position: fixed;
-  width: 100%;
-  top: -100px; 
-  left: 0;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: top 0.3s ease;
-}
+        /* Services */
+        section#services {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: #fff;
+        }
+        section#services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2D3748;
+        }
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), inset 0 0 8px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), inset 0 0 12px rgba(255, 255, 255, 0.7);
+        }
+        .card i {
+            font-size: 2.5rem;
+            color: #FF6B6B;
+            margin-bottom: 1rem;
+        }
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: #2D3748;
+        }
+        .card p {
+            font-size: 1rem;
+            color: #6B7280;
+        }
 
-nav .logo { font-size: 1.5rem; font-weight:700; color:#0077b6; }
-nav ul { display:flex; list-style:none; gap:1.5rem; }
-nav ul li a { text-decoration:none; color:#333; font-weight:500; transition:0.3s; }
-nav ul li a:hover { color:#0077b6; }
+        /* Contact */
+        section#contact {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: #FAF5FF;
+        }
+        section#contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2D3748;
+        }
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .contact-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .contact-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        .contact-card i {
+            font-size: 2rem;
+            color: #FF6B6B;
+            margin-bottom: 0.8rem;
+        }
+        .contact-card p {
+            font-size: 1rem;
+            color: #6B7280;
+        }
+        .contact-card a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-/* Hero */
-header {
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:0 1rem;
-  position:relative;
-}
-.hero-content {
-  display:flex;
-  align-items:center;
-  gap:2rem;
-  flex-wrap:wrap;
-  max-width:900px;
-  z-index:1;
-  position:relative;
-}
-.hero-content img {
-  width:180px;
-  height:180px;
-  object-fit:cover;
-  border-radius:50%;
-  border:3px solid #0077b6;
-}
-.hero-text h1 { font-size:2.8rem; color:#0077b6; margin-bottom:1rem; }
-.hero-text p { font-size:1.05rem; line-height:1.6; margin-bottom:1.5rem; color:#555; }
-.hero-text a { display:inline-block; padding:0.8rem 2rem; background:#0077b6; color:#fff; border-radius:30px; font-weight:600; transition:0.3s; }
-.hero-text a:hover { background:#005f87; }
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            background: #2D3748;
+            color: #fff;
+            font-size: 0.9rem;
+        }
 
-/* Services */
-section#services { padding:6rem 2rem; text-align:center; background:#e6f0f6; }
-section#services h2 { font-size:2.2rem; margin-bottom:2.5rem; color:#0077b6; }
-.service-cards { display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; }
-.card { background:#fff; padding:2rem; width:260px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition:0.3s; }
-.card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
-.card i { font-size:2rem; color:#0077b6; margin-bottom:1rem; }
-.card h3 { margin-bottom:0.8rem; font-size:1.25rem; color:#333; }
-.card p { font-size:1rem; color:#555; line-height:1.5; }
-
-/* Contact */
-section#contact { padding:6rem 2rem; text-align:center; }
-section#contact h2 { font-size:2.2rem; margin-bottom:2.5rem; color:#0077b6; }
-.contact-info { display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; }
-.contact-card { background:#fff; padding:1.5rem; width:220px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition:0.3s; }
-.contact-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
-.contact-card i { font-size:1.8rem; color:#0077b6; margin-bottom:0.8rem; display:block; }
-.contact-card p { font-size:1rem; color:#555; }
-
-/* Footer */
-footer { padding:2rem; text-align:center; background:#fff; color:#555; border-top:1px solid #ddd; }
-
-/* Game Popup */
-#gamePopup {
-  position: fixed; 
-  bottom:20px; right:20px; width:300px; 
-  background:#fff; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.2);
-  padding:15px; display:flex; flex-direction:column; align-items:center; z-index:9999;
-  pointer-events:auto;
-}
-#gamePopup p { margin-bottom:10px; text-align:center; font-weight:500; }
-#startGame, #pauseGame { padding:10px 20px; background:#0077b6; color:#fff; border:none; border-radius:5px; cursor:pointer; font-weight:600; margin-top:5px;}
-#gameCanvas { width:100%; height:150px; margin-top:10px; display:none; pointer-events:auto; }
-
-/* Responsive */
-@media(max-width:768px){
-  .hero-content{flex-direction:column;text-align:center;}
-  .hero-text a{margin-top:1rem;}
-  nav ul { flex-direction:column; gap:1rem; background:#fff; position:absolute; top:100%; left:0; width:100%; display:none; padding:1rem 0; }
-  nav ul.show { display:flex; }
-}
-</style>
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content { flex-direction: column; text-align: center; }
+            .hero-text h1 { font-size: 2.2rem; }
+            .hero-text h3 { font-size: 1.3rem; }
+            .hero-text a { margin-top: 1rem; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                background: #2D3748;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 1rem 0;
+            }
+            nav ul.show { display: flex; }
+            .hamburger { display: block; }
+            .emoji { font-size: 1.2rem; }
+        }
+    </style>
 </head>
 <body>
+    <!-- Falling Emojis Container -->
+    <div id="emojis"></div>
 
-<!-- Balloons Container -->
-<div id="balloons"></div>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Bilal Nasir</div>
+        <ul id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </nav>
 
-<!-- Navbar -->
-<nav>
-  <div class="logo">Bilal Nasir</div>
-  <ul id="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+    <!-- Hero -->
+    <header id="home" data-aos="fade-up">
+        <div class="hero-content">
+            <img src="your-image.jpg" alt="Bilal Nasir">
+            <div class="hero-text">
+                <h1>Bilal Nasir</h1>
+                <h3>Amazon E-commerce Specialist</h3>
+                <p>I am an IT student and Amazon E-commerce Specialist with hands-on experience in product listing optimization, PPC campaigns, sales strategy, and team supervision. Skilled in quality assurance, TCoS analysis, and data-driven decisions, I help increase product visibility and conversions on Amazon.</p>
+                <a href="#services">Explore My Services</a>
+            </div>
+        </div>
+    </header>
 
-<!-- Hero -->
-<header id="home">
-  <div class="hero-content">
-    <img src="your-image.jpg" alt="Bilal Nasir">
-    <div class="hero-text">
-      <h1>Bilal Nasir</h1>
-      <p>I am an IT student and Amazon E-commerce Specialist with hands-on experience in product listing optimization, PPC campaigns, sales strategy, and team supervision. Skilled in quality assurance, TCoS analysis, and data-driven decisions, I help increase product visibility and conversions on Amazon.</p>
-      <a href="#services">Explore My Services</a>
-    </div>
-  </div>
-</header>
+    <!-- Services -->
+    <section id="services" data-aos="fade-up">
+        <h2>My Amazon Services</h2>
+        <div class="service-cards">
+            <div class="card" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-chart-line"></i>
+                <h3>Amazon PPC Campaigns</h3>
+                <p>Manage optimized PPC campaigns to boost sales and reduce advertising costs.</p>
+            </div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-box-open"></i>
+                <h3>Product Listing Optimization</h3>
+                <p>Improve listings with keywords, descriptions, and images for better visibility.</p>
+            </div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-check-circle"></i>
+                <h3>Quality Checking</h3>
+                <p>Inspect listings to ensure compliance and increase customer satisfaction.</p>
+            </div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="400">
+                <i class="fas fa-users"></i>
+                <h3>Team Supervision</h3>
+                <p>Coordinate teams to streamline operations and performance improvement.</p>
+            </div>
+        </div>
+    </section>
 
-<!-- Services -->
-<section id="services">
-  <h2>My Amazon Services</h2>
-  <div class="service-cards">
-    <div class="card">
-      <i class="fas fa-chart-line"></i>
-      <h3>Amazon PPC Campaigns</h3>
-      <p>Manage optimized PPC campaigns to boost sales and reduce advertising costs.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-box-open"></i>
-      <h3>Product Listing Optimization</h3>
-      <p>Improve listings with keywords, descriptions, and images for better visibility.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-check-circle"></i>
-      <h3>Quality Checking</h3>
-      <p>Inspect listings to ensure compliance and increase customer satisfaction.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-users"></i>
-      <h3>Team Supervision</h3>
-      <p>Coordinate teams to streamline operations and performance improvement.</p>
-    </div>
-  </div>
-</section>
+    <!-- Contact -->
+    <section id="contact" data-aos="fade-up">
+        <h2>Contact Me</h2>
+        <div class="contact-info">
+            <div class="contact-card" data-aos="zoom-in" data-aos-delay="100">
+                <a href="https://wa.me/923196503733" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <p>WhatsApp</p>
+                </a>
+            </div>
+            <div class="contact-card" data-aos="zoom-in" data-aos-delay="200">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bilalkhanxd2005@gmail.com" target="_blank">
+                    <i class="fas fa-envelope"></i>
+                    <p>Email</p>
+                </a>
+            </div>
+            <div class="contact-card" data-aos="zoom-in" data-aos-delay="300">
+                <a href="https://www.linkedin.com/in/bilal-nasir-xd" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                    <p>LinkedIn</p>
+                </a>
+            </div>
+            <div class="contact-card" data-aos="zoom-in" data-aos-delay="400">
+                <a href="https://web.facebook.com/TH3.OWN3R.OF.XD.BR9ND" target="_blank">
+                    <i class="fab fa-facebook"></i>
+                    <p>Facebook</p>
+                </a>
+            </div>
+        </div>
+    </section>
 
-<!-- Contact -->
-<section id="contact">
-  <h2>Contact Me</h2>
-  <div class="contact-info">
-    <div class="contact-card">
-      <a href="https://wa.me/923196503733" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-        <p>WhatsApp</p>
-      </a>
-    </div>
-    <div class="contact-card">
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bilalkhanxd2005@gmail.com" target="_blank">
-        <i class="fas fa-envelope"></i>
-        <p>Email</p>
-      </a>
-    </div>
-    <div class="contact-card">
-      <a href="https://www.linkedin.com/in/bilal-nasir-xd" target="_blank">
-        <i class="fab fa-linkedin"></i>
-        <p>LinkedIn</p>
-      </a>
-    </div>
-    <div class="contact-card">
-      <a href="https://web.facebook.com/TH3.OWN3R.OF.XD.BR9ND" target="_blank">
-        <i class="fab fa-facebook"></i>
-        <p>Facebook</p>
-      </a>
-    </div>
-  </div>
-</section>
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 Bilal Nasir. All rights reserved.
+    </footer>
 
-<!-- Footer -->
-<footer>
-  &copy; 2025 Bilal Nasir. All rights reserved.
-</footer>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
 
-<!-- Game Popup -->
-<div id="gamePopup">
-  <p>Feeling bored? Play Cat Game!</p>
-  <button id="startGame">Start Game</button>
-  <button id="pauseGame" style="display:none;">Pause</button>
-  <canvas id="gameCanvas" width="280" height="150" style="display:none;"></canvas>
-</div>
+        // Falling Emojis
+        const emojisContainer = document.getElementById('emojis');
+        const emojiList = ['📦', '💸', '📈', '🛒'];
+        function createEmoji() {
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            emoji.innerText = emojiList[Math.floor(Math.random() * emojiList.length)];
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.animationDuration = (4 + Math.random() * 4) + 's';
+            emojisContainer.appendChild(emoji);
+            setTimeout(() => emoji.remove(), 8000);
+        }
+        setInterval(createEmoji, 600);
 
-<script>
-// Balloons
-const balloonsContainer = document.getElementById('balloons');
-const colors = ['#ff5e5e','#ff9f1c','#2ec4b6','#e71d36','#8d99ae'];
-function createBalloon() {
-  const balloon = document.createElement('div');
-  balloon.classList.add('balloon');
-  balloon.style.background = colors[Math.floor(Math.random()*colors.length)];
-  balloon.style.left = Math.random() * 100 + 'vw';
-  balloon.style.animationDuration = (5 + Math.random()*5) + 's';
-  balloonsContainer.appendChild(balloon);
-  balloon.addEventListener('click', () => balloon.remove());
-  setTimeout(() => balloon.remove(), 12000);
-}
-setInterval(createBalloon, 500);
+        // Hamburger Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('#nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
 
-// Navbar hide/show
-let lastScroll = 0;
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
-  if(currentScroll <= 0){ nav.style.top='0'; return;}
-  if(currentScroll > lastScroll){ nav.style.top='-100px';} else{ nav.style.top='0'; }
-  lastScroll = currentScroll;
-});
-
-// Cat Game
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-const startBtn = document.getElementById('startGame');
-const pauseBtn = document.getElementById('pauseGame');
-let gameInterval;
-let cat = { x:30, y:120, width:20, height:20, dy:0, gravity:0.6, jumpPower:-12 };
-let obstacles = [];
-let speed = 3;
-let score = 0;
-let gameOver = false;
-let paused = false;
-
-function resetGame() {
-  cat.y = 120; cat.dy = 0;
-  obstacles = []; speed=3; score=0; gameOver=false; paused=false;
-  canvas.style.display = 'block';
-  pauseBtn.style.display = 'inline-block';
-  pauseBtn.innerText = 'Pause';
-}
-
-function spawnObstacle() {
-  let height = 20 + Math.random()*30;
-  obstacles.push({x:canvas.width, y:150-height, width:15, height:height});
-}
-
-function drawCat() {
-  ctx.fillStyle='orange';
-  ctx.fillRect(cat.x, cat.y+10, 20, 10);
-  ctx.beginPath();
-  ctx.arc(cat.x+10, cat.y+5, 5, 0, Math.PI*2);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.moveTo(cat.x+5, cat.y+5);
-  ctx.lineTo(cat.x+8, cat.y-2);
-  ctx.lineTo(cat.x+10, cat.y+5);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.moveTo(cat.x+15, cat.y+5);
-  ctx.lineTo(cat.x+12, cat.y-2);
-  ctx.lineTo(cat.x+10, cat.y+5);
-  ctx.fill();
-}
-
-function drawObstacles() {
-  obstacles.forEach(obs => {
-    ctx.fillStyle='saddlebrown';
-    ctx.fillRect(obs.x, obs.y+20, 10, obs.height-20);
-    ctx.fillStyle='green';
-    ctx.beginPath();
-    ctx.arc(obs.x+5, obs.y+10, 15, 0, Math.PI*2);
-    ctx.fill();
-  });
-}
-
-function draw() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  drawCat();
-  drawObstacles();
-  ctx.fillStyle='#555';
-  ctx.fillRect(0,150,canvas.width,5);
-  ctx.fillStyle='#000';
-  ctx.font='14px Poppins';
-  ctx.fillText('Score: '+score, 10, 15);
-}
-
-function update() {
-  if(gameOver || paused) return;
-  cat.dy += cat.gravity;
-  cat.y += cat.dy;
-  if(cat.y + cat.height > 150) cat.y=150-cat.height, cat.dy=0;
-  obstacles.forEach(obs => { 
-    obs.x -= speed; 
-    if(cat.x < obs.x + obs.width &&
-       cat.x + cat.width > obs.x &&
-       cat.y < obs.y + obs.height &&
-       cat.y + cat.height > obs.y) {
-        gameOver = true; 
-        alert('Game Over! Your score: '+score);
-        resetGame();
-    }
-  });
-  obstacles = obstacles.filter(obs => obs.x+obs.width>0);
-  score += 1;
-  if(score % 100 === 0) speed += 0.5;
-}
-
-function gameLoop() { update(); draw(); }
-
-startBtn.addEventListener('click', () => {
-  resetGame();
-  if(gameInterval) clearInterval(gameInterval);
-  gameInterval = setInterval(gameLoop,20);
-});
-
-pauseBtn.addEventListener('click', () => {
-  paused = !paused;
-  pauseBtn.innerText = paused ? 'Resume' : 'Pause';
-});
-
-document.addEventListener('keydown', e => { 
-  if(e.code==='Space' && !paused && !gameOver){ 
-    if(cat.y===150-cat.height) cat.dy=cat.jumpPower;
-  }
-});
-canvas.addEventListener('click', ()=>{ 
-  if(!paused && !gameOver && cat.y===150-cat.height) cat.dy=cat.jumpPower; 
-});
-
-setInterval(() => { 
-  if(!gameOver && !paused && canvas.style.display==='block') spawnObstacle(); 
-},1500);
-</script>
+        // Navbar Scroll Effect
+        let lastScroll = 0;
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll <= 0) { nav.style.top = '0'; return; }
+            if (currentScroll > lastScroll) { nav.style.top = '-100px'; } else { nav.style.top = '0'; }
+            lastScroll = currentScroll;
+        });
+    </script>
 </body>
 </html>
